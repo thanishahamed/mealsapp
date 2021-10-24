@@ -1,13 +1,16 @@
 import React from "react";
 import { View, Text, StyleSheet, Button, FlatList } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import CategoryGridTile from "../components/CategoryGridTile";
 import { CATEGORIES } from "../data/dummy-data";
 
 const CategoriesScreen = (props) => {
   const renderGridItem = (gridItem) => {
     return (
-      <TouchableOpacity
-        onPress={() =>
+      <CategoryGridTile
+        name={gridItem.item.name}
+        color={gridItem.item.color}
+        onSelect={() =>
           props.navigation.navigate({
             routeName: "CategoryMeal",
             params: {
@@ -15,11 +18,7 @@ const CategoriesScreen = (props) => {
             },
           })
         }
-      >
-        <View style={styles.gridStyle}>
-          <Text> {gridItem.item.name} </Text>
-        </View>
-      </TouchableOpacity>
+      />
     );
   };
 
